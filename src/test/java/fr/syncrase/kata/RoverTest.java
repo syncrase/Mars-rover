@@ -4,7 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class RoverTest {
 
@@ -31,5 +34,13 @@ class RoverTest {
         void testInitialDirection() {
             assertEquals(Direction.NORTH, this.rover.getDirection());
         }
+    }
+
+    @Test
+    void roverReceivesACharacterArrayOfCommand() {
+        Rover rover = new Rover(new Coordonnees(0, 0), Direction.NORTH);
+        ArrayList<Command> commands = new ArrayList<>();
+        rover.setCommands(commands);
+        assertNotNull(rover);
     }
 }
