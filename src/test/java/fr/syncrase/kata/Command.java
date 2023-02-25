@@ -4,22 +4,22 @@ public enum Command {
 
     FORWARD {
         public void move(Rover rover) {
-            rover.setPosition(new Coordonnees(rover.getPosition(), rover.getDirection(), 1));
+            rover.go(1);
         }
     },
     TURN_LEFT {
         public void move(Rover rover) {
-            rover.setDirection(rover.getDirection().turn(-1));
+            rover.turn(-1);
         }
     },
     TURN_RIGHT {
         public void move(Rover rover) {
-            rover.setDirection(rover.getDirection().turn(1));
+            rover.turn(1);
         }
     },
     BACKWARD {
         public void move(Rover rover) {
-            rover.setPosition(new Coordonnees(rover.getPosition(), rover.getDirection(), -1));
+            rover.go(-1);
         }
     };
 

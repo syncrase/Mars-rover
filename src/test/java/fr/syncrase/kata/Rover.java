@@ -13,10 +13,30 @@ public class Rover {
         this.direction = direction;
     }
 
-    public void move() {
+    public void applyCommands() {
         for (Command next : commands) {
             next.move(this);
         }
+    }
+
+    public void turn(int sens) {
+        direction = direction.turn(sens);
+    }
+
+    public void go(int sens) {
+        coordonnees = new Coordonnees(coordonnees, direction, sens);
+    }
+
+    public void setCommands(ArrayList<Command> commands) {
+        this.commands = commands;
+    }
+
+    public Direction getDirection() {
+        return this.direction;
+    }
+
+    public Coordonnees getPosition() {
+        return this.coordonnees;
     }
 
     @Override
@@ -35,25 +55,5 @@ public class Rover {
         result = 31 * result + coordonnees.hashCode();
         result = 31 * result + (commands != null ? commands.hashCode() : 0);
         return result;
-    }
-
-    public void setCommands(ArrayList<Command> commands) {
-        this.commands = commands;
-    }
-
-    public Direction getDirection() {
-        return this.direction;
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
-
-    public Coordonnees getPosition() {
-        return this.coordonnees;
-    }
-
-    public void setPosition(Coordonnees go) {
-        this.coordonnees = go;
     }
 }
