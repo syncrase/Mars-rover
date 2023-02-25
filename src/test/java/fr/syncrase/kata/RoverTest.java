@@ -43,4 +43,33 @@ class RoverTest {
         rover.setCommands(commands);
         assertNotNull(rover);
     }
+
+    @Nested
+    @DisplayName("Commands that move the rover")
+    class MoveTest {
+
+        private final Rover rover;
+
+        public MoveTest() {
+            this.rover = new Rover(new Coordonnees(0, 0), Direction.NORTH);
+        }
+
+        @Test
+        void forward() {
+            ArrayList<Command> commands = new ArrayList<>();
+            commands.add(Command.FORWARD);
+            rover.setCommands(commands);
+            rover.move();
+            assertEquals(new Coordonnees(0, 1), rover.getPosition());
+        }
+
+        @Test
+        void backward() {
+            ArrayList<Command> commands = new ArrayList<>();
+            commands.add(Command.BACKWARD);
+            rover.setCommands(commands);
+            rover.move();
+            assertEquals(new Coordonnees(0, -1), rover.getPosition());
+        }
+    }
 }

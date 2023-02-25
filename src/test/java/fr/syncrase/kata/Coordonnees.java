@@ -24,4 +24,12 @@ public class Coordonnees {
         result = 31 * result + y;
         return result;
     }
+
+    public int getY() {
+        return this.y;
+    }
+
+    public int getX() {
+        return x;
+    }
 }
