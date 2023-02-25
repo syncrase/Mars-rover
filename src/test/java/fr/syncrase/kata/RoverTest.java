@@ -145,8 +145,8 @@ class RoverTest {
 
         rover.applyCommands();
         assertEquals(Direction.NORTH, rover.getDirection());
-        assertEquals(2, rover.getPosition().getX());
-        assertEquals(0, rover.getPosition().getY());
+        assertEquals(2, rover.getPosition().x());
+        assertEquals(0, rover.getPosition().y());
     }
 
 }
