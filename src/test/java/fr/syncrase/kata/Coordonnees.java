@@ -9,6 +9,12 @@ public class Coordonnees {
         this.y = y;
     }
 
+    public Coordonnees(Coordonnees position, Direction direction, Command next) {
+        int sens = next == Command.FORWARD ? 1 : -1;
+        this.x = position.getX() + sens * direction.getX();
+        this.y = position.getY() + sens * direction.getY();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -32,4 +38,5 @@ public class Coordonnees {
     public int getX() {
         return x;
     }
+
 }

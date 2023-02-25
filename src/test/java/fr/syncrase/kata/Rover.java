@@ -1,7 +1,6 @@
 package fr.syncrase.kata;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Objects;
 
 public class Rover {
@@ -45,15 +44,9 @@ public class Rover {
     }
 
     public void move() {
-        Iterator<Command> iterator = commands.iterator();
-        while (iterator.hasNext()) {
-            Command next = iterator.next();
-            this.applyCommand(next);
+        for (Command next : commands) {
+            this.setPosition(new Coordonnees(this.getPosition(), this.getDirection(), next));
         }
-    }
-
-    private void applyCommand(Command next) {
-        next.apply(this);
     }
 
     public void setPosition(Coordonnees go) {
