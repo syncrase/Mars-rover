@@ -72,4 +72,34 @@ class RoverTest {
             assertEquals(new Coordonnees(0, -1), rover.getPosition());
         }
     }
+
+    @Nested
+    @DisplayName("Commands that turn the rover")
+    class TurnTest {
+
+        private final Rover rover;
+
+        public TurnTest() {
+            this.rover = new Rover(new Coordonnees(0, 0), Direction.NORTH);
+        }
+
+        @Test
+        void left() {
+            ArrayList<Command> commands = new ArrayList<>();
+            commands.add(Command.TURN_LEFT);
+            rover.setCommands(commands);
+            rover.move();
+            assertEquals(Direction.WEST, rover.getDirection());
+        }
+
+        @Test
+        void rigth() {
+            ArrayList<Command> commands = new ArrayList<>();
+            commands.add(Command.TURN_RIGHT);
+            rover.setCommands(commands);
+            rover.move();
+            assertEquals(Direction.EAST, rover.getDirection());
+        }
+    }
+
 }

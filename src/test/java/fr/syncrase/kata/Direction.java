@@ -18,4 +18,13 @@ public enum Direction {
     public int getY() {
         return y;
     }
+
+    public Direction turn(int sens) {
+        Direction[] toutesDirections = Direction.values();
+
+        int index = this.ordinal() + sens;
+        return index < 0 ?
+            toutesDirections[toutesDirections.length - 1] :
+            toutesDirections[index];
+    }
 }

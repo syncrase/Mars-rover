@@ -9,8 +9,7 @@ public class Coordonnees {
         this.y = y;
     }
 
-    public Coordonnees(Coordonnees position, Direction direction, Command next) {
-        int sens = next == Command.FORWARD ? 1 : -1;
+    public Coordonnees(Coordonnees position, Direction direction, int sens) {
         this.x = position.getX() + sens * direction.getX();
         this.y = position.getY() + sens * direction.getY();
     }

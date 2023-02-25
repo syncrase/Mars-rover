@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Rover {
-    private final Direction direction;
+    private Direction direction;
     private Coordonnees coordonnees;
     private ArrayList<Command> commands;
 
@@ -13,8 +13,10 @@ public class Rover {
         this.direction = direction;
     }
 
-    public Coordonnees getPosition() {
-        return this.coordonnees;
+    public void move() {
+        for (Command next : commands) {
+            next.move(this);
+        }
     }
 
     @Override
@@ -35,18 +37,20 @@ public class Rover {
         return result;
     }
 
-    public Direction getDirection() {
-        return this.direction;
-    }
-
     public void setCommands(ArrayList<Command> commands) {
         this.commands = commands;
     }
 
-    public void move() {
-        for (Command next : commands) {
-            this.setPosition(new Coordonnees(this.getPosition(), this.getDirection(), next));
-        }
+    public Direction getDirection() {
+        return this.direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    public Coordonnees getPosition() {
+        return this.coordonnees;
     }
 
     public void setPosition(Coordonnees go) {
