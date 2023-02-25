@@ -15,7 +15,7 @@ class RoverTest {
     @DisplayName("Given the initial")
     class CreationTest {
 
-        Rover rover;
+        private final Rover rover;
 
         public CreationTest() {
             Coordonnees coordonnees = new Coordonnees(0, 0);
@@ -122,13 +122,31 @@ class RoverTest {
         }
 
         @Test
-        void rigth() {
+        void right() {
             ArrayList<Command> commands = new ArrayList<>();
             commands.add(Command.TURN_RIGHT);
             rover.setCommands(commands);
             rover.applyCommands();
             assertEquals(Direction.EAST, rover.getDirection());
         }
+    }
+
+    @Test
+    void roverExecuteSetOfCommand() {
+        Rover rover = new Rover(new Coordonnees(0, 0), Direction.NORTH);
+        ArrayList<Command> commands = new ArrayList<>();
+        commands.add(Command.TURN_RIGHT);
+        commands.add(Command.FORWARD);// (1, 0)
+        commands.add(Command.FORWARD);// (2, 0)
+        commands.add(Command.TURN_LEFT);
+        commands.add(Command.FORWARD);// (2, 1)
+        commands.add(Command.BACKWARD);// (2, 0)
+        rover.setCommands(commands);
+
+        rover.applyCommands();
+        assertEquals(Direction.NORTH, rover.getDirection());
+        assertEquals(2, rover.getPosition().getX());
+        assertEquals(0, rover.getPosition().getY());
     }
 
 }
