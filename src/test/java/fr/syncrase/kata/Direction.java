@@ -12,7 +12,7 @@ public enum Direction {
     }
 
     public int getX() {
-        return 0;
+        return x;
     }
 
     public int getY() {
