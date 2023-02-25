@@ -45,12 +45,12 @@ class RoverTest {
     }
 
     @Nested
-    @DisplayName("Commands that move the rover")
-    class MoveTest {
+    @DisplayName("Commands that move north the rover")
+    class MoveNorthTest {
 
         private final Rover rover;
 
-        public MoveTest() {
+        public MoveNorthTest() {
             this.rover = new Rover(new Coordonnees(0, 0), Direction.NORTH);
         }
 
@@ -59,7 +59,7 @@ class RoverTest {
             ArrayList<Command> commands = new ArrayList<>();
             commands.add(Command.FORWARD);
             rover.setCommands(commands);
-            rover.move();
+            rover.applyCommands();
             assertEquals(new Coordonnees(0, 1), rover.getPosition());
         }
 
@@ -68,8 +68,37 @@ class RoverTest {
             ArrayList<Command> commands = new ArrayList<>();
             commands.add(Command.BACKWARD);
             rover.setCommands(commands);
-            rover.move();
+            rover.applyCommands();
             assertEquals(new Coordonnees(0, -1), rover.getPosition());
+        }
+    }
+
+    @Nested
+    @DisplayName("Commands that move east the rover")
+    class MoveSouthTest {
+
+        private final Rover rover;
+
+        public MoveSouthTest() {
+            this.rover = new Rover(new Coordonnees(0, 0), Direction.EAST);
+        }
+
+        @Test
+        void forward() {
+            ArrayList<Command> commands = new ArrayList<>();
+            commands.add(Command.FORWARD);
+            rover.setCommands(commands);
+            rover.applyCommands();
+            assertEquals(new Coordonnees(1, 0), rover.getPosition());
+        }
+
+        @Test
+        void backward() {
+            ArrayList<Command> commands = new ArrayList<>();
+            commands.add(Command.BACKWARD);
+            rover.setCommands(commands);
+            rover.applyCommands();
+            assertEquals(new Coordonnees(-1, 0), rover.getPosition());
         }
     }
 
@@ -88,7 +117,7 @@ class RoverTest {
             ArrayList<Command> commands = new ArrayList<>();
             commands.add(Command.TURN_LEFT);
             rover.setCommands(commands);
-            rover.move();
+            rover.applyCommands();
             assertEquals(Direction.WEST, rover.getDirection());
         }
 
@@ -97,7 +126,7 @@ class RoverTest {
             ArrayList<Command> commands = new ArrayList<>();
             commands.add(Command.TURN_RIGHT);
             rover.setCommands(commands);
-            rover.move();
+            rover.applyCommands();
             assertEquals(Direction.EAST, rover.getDirection());
         }
     }
